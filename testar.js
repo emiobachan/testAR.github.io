@@ -65,7 +65,7 @@ images.forEach((image)=>{
         leftright = leftright + 5;
     }else{
         updown = updown - 6; 
-        leftright = -15;  
+        leftright = -10;  
     }
 })
 
