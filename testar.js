@@ -9,57 +9,47 @@ let rowImages = {
         "remember.jpg"
     ]
 }
-
 const images = rowImages.paths;
+console.log(images);
 
-// 範囲内でランダムに額装
-// 範囲……上下左右-25～25　遠近-30～+30　　　暫定
-
-images.forEach((image)=>{
-})
-
-
-// ランダムな表示位置を取得するメソッド
-// 配列の作成→ok
-let updownOrLeftRight = [];
-for(let i=0;i<51;i++){
-    updownOrLeftRight[i] = i-25;
-}
-let depth = [];
+// 遠すぎない位置に表示するため、上下、左右、奥行のそれぞれがとりうる値のプリセットを作成しておく
+let upDownPosition = [];
 for(let i=0;i<61;i++){
-    depth[i] = i-30;
+    upDownPosition[i] = i-25;
 }
-
-// 
-function getRandomPositionUDLR(){
-    
-
+let leftOrRightPosition = [];
+for(let i=0;i<61;i++){
+    leftOrRightPosition[i] = i-25;
 }
-let imgUpdown = Math.floor(Math.random()*(25-(-25)+1)-25);
-let imgLeftRight = Math.floor(Math.random()*(25-(-25)+1)-25);
-let imgDepth = Math.floor(Math.random()*(30-(-30)+1)-30);
-
-const framedImage1 = document.querySelector("#framedImage1");
-framedImage1.object3D.position.set(imgUpdown,imgLeftRight,imgDepth);
-
-
+let depthPosition = [];
+for(let i=0;i<61;i++){
+    depthPosition[i] = i-30;
+}
+// 奥行きは-5～5の値を避ける 3Dがお粗末なので真上や真横真下から見られないようにしておく
+depthPosition.splice(25,11);
 
 
+// 額装した画像がかぶらない(=上下左右のpositionがかぶらない)ランダムな表示位置を画像ポジションオブジェクトに格納する 画像パス:[ポジション]
+let imagePositions = {};
+// todo 奥行の正負が一致する&&上下左右のpositionがかぶるランダムなpositionを排除する
+console.log(image);
+images.forEach((image)=>{
+    imagePositions[image] = [
+        Math.floor(Math.random()*leftOrRightPosition.length), 
+        Math.floor(Math.random()*upDownPosition.length), 
+        Math.floor(Math.random()*depthPosition.length)
+    ];
+})
+console.log(imagePositions);
 
-// 挙動確認
-// const contents = document.querySelectorAll(".content1");
-// const rightHand = document.querySelector("#rightHand");
-// const entity = document.querySelector('[sound]');
+// 送られてきた画像パスと同じ数の額装画像を生成する idはパス、
+images.forEach((image)=>{
+    AFRAME.registerComponent(imagePositions.image,{
+        init: function(){}
+    })
+    let framedImage = document.createElement("a-entity");
+    CustomElementRegistry.setAttribute(imagePositions.image,"")
 
-// console.log(contents);
-// console.log(rightHand);
-// rightHand.addEventListener("thumbup",()=>{
-// contents.forEach(content,()=>{
-//     content.object3D.position.set(0,8,-5);
-// })
-// })
-// contents.forEach(content,()=>{
-// content.addEventListener("click",()=>{
-//     entity.components.sound.playSound();
-// })
-// })
+    const ascene = document.querySelector("a-scene");
+    ascene.insertAdjacentHTML("beforeend",addList);
+})
