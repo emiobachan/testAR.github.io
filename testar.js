@@ -1,4 +1,4 @@
-// 本当はバックエンドから何らかの形で画像パスが送られてくる
+// // 本当はバックエンドから何らかの形で画像パスが送られてくる
 let rowImages = {
     "paths":[
         "kabuto_blue.png",
@@ -10,15 +10,24 @@ let rowImages = {
     ]
 }
 const images = rowImages.paths;
-console.log(images);
+
+// アセットの中にimgを生成
+const asset = document.querySelector("a-assets")
+images.forEach((image)=>{
+    let imageeee = document.createElement("img");
+    imageeee.setAttribute("id", image);
+    imageeee.setAttribute("src", image);
+    asset.appendChild(imageeee);
+});
+
 
 // 遠すぎない位置に表示するため、上下、左右、奥行のそれぞれがとりうる値のプリセットを作成しておく
 let upDownPosition = [];
-for(let i=0;i<61;i++){
+for(let i=0;i<51;i++){
     upDownPosition[i] = i-25;
 }
 let leftOrRightPosition = [];
-for(let i=0;i<61;i++){
+for(let i=0;i<51;i++){
     leftOrRightPosition[i] = i-25;
 }
 let depthPosition = [];
@@ -28,28 +37,35 @@ for(let i=0;i<61;i++){
 // 奥行きは-5～5の値を避ける 3Dがお粗末なので真上や真横真下から見られないようにしておく
 depthPosition.splice(25,11);
 
-
 // 額装した画像がかぶらない(=上下左右のpositionがかぶらない)ランダムな表示位置を画像ポジションオブジェクトに格納する 画像パス:[ポジション]
-let imagePositions = {};
-// todo 奥行の正負が一致する&&上下左右のpositionがかぶるランダムなpositionを排除する
-console.log(image);
-images.forEach((image)=>{
-    imagePositions[image] = [
-        Math.floor(Math.random()*leftOrRightPosition.length), 
-        Math.floor(Math.random()*upDownPosition.length), 
-        Math.floor(Math.random()*depthPosition.length)
-    ];
+let imagePositions = [];
+/**
+ * todo 奥行の正負が一致する&&上下左右のpositionがかぶるランダムなpositionを排除する */ 
+images.forEach(()=>{
+    imagePositions.push([
+        leftOrRightPosition[Math.floor(Math.random()*leftOrRightPosition.length)], 
+        upDownPosition[Math.floor(Math.random()*upDownPosition.length)], 
+        depthPosition[Math.floor(Math.random()*depthPosition.length)]
+    ]);
 })
-console.log(imagePositions);
 
 // 送られてきた画像パスと同じ数の額装画像を生成する idはパス、
+console.log(images);
+console.log(imagePositions);
+let index = 0;
 images.forEach((image)=>{
-    AFRAME.registerComponent(imagePositions.image,{
-        init: function(){}
-    })
+    // エンティティを作成
     let framedImage = document.createElement("a-entity");
-    CustomElementRegistry.setAttribute(imagePositions.image,"")
-
+    framedImage.setAttribute("id", image);
+    console.log(framedImage.object3D.position.set(imagePositions[index][0], imagePositions[index][1], imagePositions[index][2]));
+    framedImage.object3D.position.set(imagePositions[index][0], imagePositions[index][1], imagePositions[index][2]);
+    framedImage.innerHTML="<a-box color='white' rotation='0 0 0' scale='3.1 4.25 0.1' src='#boxTexture'></a-box> <a-box color='brown' position='0 2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='0 -2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='-1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box><a-box color='brown' position='1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box>";
+    // a-sceneにエンティティを追加
     const ascene = document.querySelector("a-scene");
-    ascene.insertAdjacentHTML("beforeend",addList);
+    ascene.appendChild(framedImage);
+    index++;
 })
+
+// positionが効かない　テスト
+const testEntity = document.querySelector("#framedImage1");
+testEntity.object3D.position.set(0, 0, -5);
