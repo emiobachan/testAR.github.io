@@ -59,7 +59,7 @@ images.forEach((image)=>{
     framedImage.setAttribute("id", image);
     console.log(framedImage.object3D.position.set(imagePositions[index][0], imagePositions[index][1], imagePositions[index][2]));
     framedImage.object3D.position.set(imagePositions[index][0], imagePositions[index][1], imagePositions[index][2]);
-    framedImage.innerHTML="<a-box color='white' rotation='0 0 0' scale='3.1 4.25 0.1' src='#boxTexture'></a-box> <a-box color='brown' position='0 2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='0 -2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='-1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box><a-box color='brown' position='1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box>";
+    framedImage.innerHTML=`<a-box color='white' rotation='0 0 0' scale='3.1 4.25 0.1' src='#${image}'></a-box> <a-box color='brown' position='0 2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='0 -2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='-1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box><a-box color='brown' position='1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box>`;
     // a-sceneにエンティティを追加
     const ascene = document.querySelector("a-scene");
     ascene.appendChild(framedImage);
