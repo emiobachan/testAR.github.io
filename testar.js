@@ -39,19 +39,8 @@ let imgUpdown = Math.floor(Math.random()*(25-(-25)+1)-25);
 let imgLeftRight = Math.floor(Math.random()*(25-(-25)+1)-25);
 let imgDepth = Math.floor(Math.random()*(30-(-30)+1)-30);
 
-
-
-
-// 画像に対して額縁の位置を自動で算出
-// const framedImages = document.querySelectorAll(".framedImage");
-// let i = 2;
-// framedImages.forEach((framedImage)=>{
-//     framedImage.object3D.position.set(i, i, i);
-//     console.log(image.object3D.position.x);
-//     i++;
-// })
 const framedImage1 = document.querySelector("#framedImage1");
-framedImage1.object3D.position.set(2,3,-16)
+framedImage1.object3D.position.set(imgUpdown,imgLeftRight,imgDepth);
 
 
 
