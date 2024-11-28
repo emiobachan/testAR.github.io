@@ -50,7 +50,7 @@ depthPosition.splice(25,11);
 // })
 
 // 送られてきた画像パスと同じ数の額装画像を生成する idはパス、
-let leftright = -15;
+let leftright = -10;
 let updown = 0;
 images.forEach((image)=>{
     // エンティティを作成
