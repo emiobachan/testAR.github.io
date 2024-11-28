@@ -21,23 +21,23 @@ images.forEach((image)=>{
 });
 
 
-// 遠すぎない位置に表示するため、上下、左右、奥行のそれぞれがとりうる値のプリセットを作成しておく
-let upDownPosition = [];
-for(let i=0;i<51;i++){
-    upDownPosition[i] = i-25;
-}
-let leftOrRightPosition = [];
-for(let i=0;i<51;i++){
-    leftOrRightPosition[i] = i-25;
-}
-let depthPosition = [];
-for(let i=0;i<61;i++){
-    depthPosition[i] = i-30;
-}
-// 奥行きは-5～5の値を避ける 3Dがお粗末なので真上や真横真下から見られないようにしておく
-depthPosition.splice(25,11);
+// // 遠すぎない位置に表示するため、上下、左右、奥行のそれぞれがとりうる値のプリセットを作成しておく
+// let upDownPosition = [];
+// for(let i=0;i<51;i++){
+//     upDownPosition[i] = i-25;
+// }
+// let leftOrRightPosition = [];
+// for(let i=0;i<51;i++){
+//     leftOrRightPosition[i] = i-25;
+// }
+// let depthPosition = [];
+// for(let i=0;i<61;i++){
+//     depthPosition[i] = i-30;
+// }
+// // 奥行きは-5～5の値を避ける 3Dがお粗末なので真上や真横真下から見られないようにしておく
+// depthPosition.splice(25,11);
 
-// 額装した画像がかぶらない(=上下左右のpositionがかぶらない)ランダムな表示位置を画像ポジションオブジェクトに格納する 画像パス:[ポジション]
+// //額装した画像がかぶらない(=上下左右のpositionがかぶらない)ランダムな表示位置を画像ポジションオブジェクトに格納する 画像パス:[ポジション]
 // let imagePositions = [];
 // /**
 //  * todo 奥行の正負が一致する&&上下左右のpositionがかぶるランダムなpositionを排除する */ 
@@ -69,6 +69,3 @@ images.forEach((image)=>{
     }
 })
 
-// positionが効かない　テスト
-const testEntity = document.querySelector("#framedImage1");
-testEntity.object3D.position.set(0, 0, -5);
