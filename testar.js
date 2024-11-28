@@ -38,32 +38,35 @@ for(let i=0;i<61;i++){
 depthPosition.splice(25,11);
 
 // 額装した画像がかぶらない(=上下左右のpositionがかぶらない)ランダムな表示位置を画像ポジションオブジェクトに格納する 画像パス:[ポジション]
-let imagePositions = [];
-/**
- * todo 奥行の正負が一致する&&上下左右のpositionがかぶるランダムなpositionを排除する */ 
-images.forEach(()=>{
-    imagePositions.push([
-        leftOrRightPosition[Math.floor(Math.random()*leftOrRightPosition.length)], 
-        upDownPosition[Math.floor(Math.random()*upDownPosition.length)], 
-        depthPosition[Math.floor(Math.random()*depthPosition.length)]
-    ]);
-})
+// let imagePositions = [];
+// /**
+//  * todo 奥行の正負が一致する&&上下左右のpositionがかぶるランダムなpositionを排除する */ 
+// images.forEach(()=>{
+//     imagePositions.push([
+//         leftOrRightPosition[Math.floor(Math.random()*leftOrRightPosition.length)], 
+//         upDownPosition[Math.floor(Math.random()*upDownPosition.length)], 
+//         depthPosition[Math.floor(Math.random()*depthPosition.length)]
+//     ]);
+// })
 
 // 送られてきた画像パスと同じ数の額装画像を生成する idはパス、
-console.log(images);
-console.log(imagePositions);
-let index = 0;
+let leftright = -15;
+let updown = 0;
 images.forEach((image)=>{
     // エンティティを作成
     let framedImage = document.createElement("a-entity");
     framedImage.setAttribute("id", image);
-    console.log(framedImage.object3D.position.set(imagePositions[index][0], imagePositions[index][1], imagePositions[index][2]));
-    framedImage.object3D.position.set(imagePositions[index][0], imagePositions[index][1], imagePositions[index][2]);
+    framedImage.object3D.position.set(leftright, updown, -15);
     framedImage.innerHTML=`<a-box color='white' rotation='0 0 0' scale='3.1 4.25 0.1' src='#${image}'></a-box> <a-box color='brown' position='0 2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='0 -2.2 0.2' rotation='45 0 0' scale='3.2 0.3 0.3'></a-box><a-box color='brown' position='-1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box><a-box color='brown' position='1.5 0 0.2' rotation='0 45 90' scale='4.5 0.3 0.3'></a-box>`;
     // a-sceneにエンティティを追加
     const ascene = document.querySelector("a-scene");
     ascene.appendChild(framedImage);
-    index++;
+    if(leftright<5){
+        leftright = leftright + 5;
+    }else{
+        updown = updown - 6; 
+        leftright = -15;  
+    }
 })
 
 // positionが効かない　テスト
