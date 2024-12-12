@@ -20,7 +20,9 @@ if(restartButton){
         event.preventDefault();
         image.removeAttribute('src');
         image.classList.remove("visible");
-        location.refresh();
+
+        image.style.display = 'none'
+
     });
 }
 
@@ -28,7 +30,6 @@ function takeSnapshot(video){
     // Here we're using a trick that involves a hidden canvas element.  
     const canvas = document.createElement('canvas');
     const canvasCtx = canvas.getContext('2d');
-
     let widwidth = video.videoWidth;
     let heiheight = video.videoHeight;
 
