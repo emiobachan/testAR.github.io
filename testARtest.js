@@ -20,7 +20,7 @@ if(restartButton){
         event.preventDefault();
         image.removeAttribute('src');
         image.classList.remove("visible");
-        location.reload();
+        location.refresh();
     });
 }
 
