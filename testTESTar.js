@@ -44,10 +44,8 @@ const createTergetImage = function(img){
 const createCharacters = function(chars,scales,positions){
     let charactoers = document.createElement("a-entity");
     charactoers.setAttribute("text",{value: chars, color: 'black'});
-    charactoers.setAttribute("color","black");
     charactoers.setAttribute("scale",{x:scales[0], y:scales[1], z:scales[2]});
     charactoers.object3D.position.set(positions[0],positions[1],positions[2]);
-    charactoers
     return charactoers;
 }
 // エフェクトの画面表示を行う関数
@@ -72,7 +70,7 @@ scene.appendChild(ansButton);
 // 回答設定
 let txt;  // 回答の保持用
 const recognition = new webkitSpeechRecognition();
-recognition.lang = 'en-US';
+recognition.lang = 'jp-JP';
 // recognition.interimResults = true;
 recognition.onresult = function(event) {
   txt = event.results[0][0].transcript;
@@ -88,7 +86,6 @@ recognition.onresult = function(event) {
   else{
     // 不正解のエフェクト
     console.log('nice');
-
   }
 }
 
