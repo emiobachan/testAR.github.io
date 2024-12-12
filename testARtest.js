@@ -12,7 +12,6 @@ if(takeButton){
         // 画像表示
         image.setAttribute('src', snap);
         image.classList.add("visible");
-        // 削除ボタン表示
     });
 }
 
@@ -21,6 +20,7 @@ if(restartButton){
         event.preventDefault();
         image.removeAttribute('src');
         image.classList.remove("visible");
+        location.reload();
     });
 }
 
