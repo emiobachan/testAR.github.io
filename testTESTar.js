@@ -45,7 +45,7 @@ const createCharacters = function(chars,scales,positions){
     let charactoers = document.createElement("a-entity");
     charactoers.setAttribute("text",{value: chars, color: 'black'});
     charactoers.setAttribute("color","black");
-    charactoers.setAttribute("scale",{x:scales[0], y:scales[1], z:scales[2]})
+    charactoers.setAttribute("scale",{x:scales[0], y:scales[1], z:scales[2]});
     charactoers.object3D.position.set(positions[0],positions[1],positions[2]);
     charactoers
     return charactoers;
@@ -88,6 +88,7 @@ recognition.onresult = function(event) {
   else{
     // 不正解のエフェクト
     console.log('nice');
+
   }
 }
 
