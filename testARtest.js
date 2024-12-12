@@ -21,6 +21,7 @@ if(restartButton){
         event.preventDefault();
         image.removeAttribute('src');
         image.classList.remove("visible");
+        window.location.reload();
     });
 }
 
