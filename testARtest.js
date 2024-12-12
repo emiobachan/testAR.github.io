@@ -12,7 +12,6 @@ if(takeButton){
         // 画像表示
         image.setAttribute('src', snap);
         image.classList.add("visible");
-        // 削除ボタン表示
     });
 }
 
@@ -21,7 +20,7 @@ if(restartButton){
         event.preventDefault();
         image.removeAttribute('src');
         image.classList.remove("visible");
-        window.location.reload();
+        image.style.display = 'none'
     });
 }
 
@@ -29,7 +28,6 @@ function takeSnapshot(video){
     // Here we're using a trick that involves a hidden canvas element.  
     const canvas = document.createElement('canvas');
     const canvasCtx = canvas.getContext('2d');
-
     let widwidth = video.videoWidth;
     let heiheight = video.videoHeight;
 
