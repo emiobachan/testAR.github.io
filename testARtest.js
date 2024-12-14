@@ -65,22 +65,14 @@ if(sb == 'turtle'){
         txt = event.results[0][0].transcript;
         if(txt.includes('回って') || txt == '回って'){
             console.log(txt);
-            obobob.setAttribute('animetion',
-                {'property': 'rotation', 
-                'to': {x:350, y:180, z:0}, 
-                'dur':1000}
+            obobob.setAttribute('animation__001',
+                {
+                'property': 'rotation',
+                'from':{x: 0, y: 0, z: 0},
+                'to': {x: 0, y: 360, z: 0},  
+                }
             );
-            //  animation="property:rotation; to:350,180,0; dur:1000;"
         }
-        // else if(txt == 'こっちに来て' || txt == 'こっち来て'){
-    
-        // }
-        // else if(txt == 'あっち行って'){
-    
-        // }
-        // else if(txt == 'たのしい' || txt == 'うれしい'){
-    
-        // }
     }
     recognition.start();
 }
