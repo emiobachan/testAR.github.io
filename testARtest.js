@@ -25,11 +25,13 @@ if(takeButton){
 if(restartButton){
     restartButton.addEventListener('click', function(event){
         event.preventDefault();
+
         // 画像非表示
         const imagee = document.querySelector('#snapshot');
         imagee.removeAttribute('src');
         imagee.classList.remove("visible");
         imagee.remove();
+
     });
 }
 function takeSnapshot(video){
@@ -50,6 +52,7 @@ function takeSnapshot(video){
         return canvas.toDataURL('image/png')
     }
 }
+
 
 if(sb == 'turtle'){
     // 声でオブジェクトを操作する
@@ -76,3 +79,4 @@ if(sb == 'turtle'){
     }
     recognition.start();
 }
+
