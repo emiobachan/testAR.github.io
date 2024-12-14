@@ -70,7 +70,7 @@ scene.appendChild(ansButton);
 // 回答設定
 let txt;  // 回答の保持用
 const recognition = new webkitSpeechRecognition();
-recognition.lang = 'jp-JP';
+recognition.lang = 'en-US';
 // recognition.interimResults = true;
 recognition.onresult = function(event) {
   txt = event.results[0][0].transcript;
