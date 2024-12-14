@@ -58,21 +58,19 @@ if(sb == 'turtle'){
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'ja-JP';
     // recognition.interimResults = true;
-    recognition.onend = function(){
-        recognition.start();
-    } 
     recognition.onresult = function(event) {
         txt = event.results[0][0].transcript;
         if(txt.includes('回って') || txt == '回って'){
             console.log(txt);
-            obobob.setAttribute('animation__001',
-                {
-                'property': 'rotation',
-                'from':{x: 0, y: 0, z: 0},
-                'to': {x: 0, y: 360, z: 0},  
-                }
-            );
+            obobob.emit('rotate');
+            obobob.emit('rsmRotate');
+        }
+        if(txt.includes('止まって') || txt == '止まって'){
+            obobob.emit('stpRotate');
         }
     }
+    recognition.onend = function(){
+        recognition.start();
+    } 
     recognition.start();
 }
