@@ -5,8 +5,9 @@ sb = 'turtle';
 // ボタン押下で画像表示・削除
 const takeButton = document.querySelector('#take');
 const restartButton = document.querySelector('#del');
+const taking = document.querySelector('#taking');
 const scene = document.querySelector('a-scene');
-const image = document.querySelector('#snapshot');
+
 
 if(takeButton){
     takeButton.addEventListener('click', function(event){
@@ -14,17 +15,21 @@ if(takeButton){
         let video = document.querySelector('video');
         let snap = takeSnapshot(video);
         // 画像表示
+        const image = document.createElement('img');
+        image.setAttribute('id','snapshot');
         image.setAttribute('src', snap);
         image.classList.add("visible");
+        taking.appendChild(image);
     });
 }
 if(restartButton){
     restartButton.addEventListener('click', function(event){
         event.preventDefault();
         // 画像非表示
-        image.removeAttribute('src');
-        image.classList.remove("visible");
-        image.style.display = 'none'
+        const imagee = document.querySelector('#snapshot');
+        imagee.removeAttribute('src');
+        imagee.classList.remove("visible");
+        imagee.remove();
     });
 }
 function takeSnapshot(video){
@@ -58,7 +63,6 @@ if(sb == 'turtle'){
     } 
     recognition.onresult = function(event) {
         txt = event.results[0][0].transcript;
-        console.log(txt);
         if(txt.includes('回って') || txt == '回って'){
             console.log(txt);
             obobob.setAttribute('animetion',
@@ -66,6 +70,7 @@ if(sb == 'turtle'){
                 'to': {x:350, y:180, z:0}, 
                 'dur':1000}
             );
+            //  animation="property:rotation; to:350,180,0; dur:1000;"
         }
         // else if(txt == 'こっちに来て' || txt == 'こっち来て'){
     
