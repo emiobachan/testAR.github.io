@@ -19,7 +19,7 @@ if(takeButton){
         image.setAttribute('id','snapshot');
         image.setAttribute('src', snap);
         image.classList.add("visible");
-        taking.appendChild(image);
+        scene.appendChild(image);
     });
 }
 if(restartButton){
