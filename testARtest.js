@@ -6,6 +6,7 @@ sb = 'turtle';
 const takeButton = document.querySelector('#take');
 const restartButton = document.querySelector('#del');
 const taking = document.querySelector('#taking');
+const imgg = document.querySelector('#imgg');
 const scene = document.querySelector('a-scene');
 
 
@@ -19,7 +20,7 @@ if(takeButton){
         image.setAttribute('id','snapshot');
         image.setAttribute('src', snap);
         image.classList.add("visible");
-        scene.appendChild(image);
+        imgg.appendChild(image);
     });
 }
 if(restartButton){
