@@ -22,6 +22,12 @@
             text-align: center;
             box-sizing: border-box;
         }
+        #imgg{
+            position: absolute;
+            z-index: 1000;
+            top: 50px;
+            left: 50px;
+        }
         #taking a {
             display: inline-block;
             width: 40px;
@@ -50,6 +56,7 @@
             <a-entity camera></a-entity>
             <a-entity id="obobob" gltf-model="#heart" scale="0.001 0.001 0.001" position="0 -0.001 -0.03" rotation='0 0 0' animation="property: rotation; to: 0 360 0; loop: true; startEvents: rotate; pauseEvents: stpRotate; resumeEvents: rsmRotate"></a-entity>
         </a-scene>
+        <div id="imgg"></div>
         <div id="taking">
             <a href="" id="take"><img src="camera.png" alt="" height="100%" width="100%"></a>
             <a href="" id="del"><img src="gomibako.png" alt="" height="100%" width="100%"></a>
