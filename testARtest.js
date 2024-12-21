@@ -27,11 +27,13 @@ if(takeButton){
 if(restartButton){
     restartButton.addEventListener('click', function(event){
         event.preventDefault();
+
         // 画像非表示
         const imagee = document.querySelector('#snapshot');
         imagee.removeAttribute('src');
         imagee.classList.remove("visible");
         imagee.remove();
+
     });
 }
 function takeSnapshot(video){
@@ -53,6 +55,7 @@ function takeSnapshot(video){
     }
 }
 
+
 if(sb == 'heart'){
     const obobob = document.createElement('a-entity');
     obobob.setAttribute('id','obobob');
@@ -63,6 +66,7 @@ if(sb == 'heart'){
     obobob.setAttribute('color','#ff69b4')
     scene.appendChild(obobob);
 }
+
 
     // 声でオブジェクトを操作する
 if(sb == 'crane' || sb == 'ship'){
